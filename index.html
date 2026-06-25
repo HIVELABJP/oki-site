@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIサーバー・データセンター向け高多層PCB｜OKIサーキットテクノロジー</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#f0efe2;--cream2:#e8e6d7;--card:#fff;
+  --pink:#f7e1f7;--green:#e7f4d2;--yellow:#faf7d2;--lilac:#ece6f7;--sage:#dfe7cf;
+  --brown:#6e5524;--brown2:#8a6a2e;--brown-soft:#a98f5f;
+  --ink:#1c1a17;--ink2:#4a4640;--line:#d9d6c6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Pretendard','Hiragino Kaku Gothic ProN','Yu Gothic',-apple-system,sans-serif;background:var(--cream);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.7}
+.disp{font-family:'Jost','Hiragino Kaku Gothic ProN','Yu Gothic',sans-serif}
+.wrap{max-width:1240px;margin:0 auto;padding:0 48px}
+img{display:block;max-width:100%}
+.proto{background:var(--brown);color:#fff;text-align:center;font-size:12px;padding:8px;letter-spacing:.04em}
+.proto b{color:var(--yellow)}
+/* nav over hero */
+.topnav{position:absolute;top:0;left:0;right:0;z-index:20}
+.topnav .in{max-width:1240px;margin:0 auto;padding:22px 48px;display:flex;align-items:center;gap:30px;position:relative}
+.brand{display:flex;align-items:center;gap:11px;color:#fff}
+.brand .mk{font-family:'Jost',sans-serif;font-weight:700;font-size:20px;letter-spacing:.04em;line-height:1}
+.okilogo{height:24px;width:auto;display:block;background:#fff;padding:5px 10px}
+.bsub{font-size:11px;font-weight:700;letter-spacing:.09em;color:rgba(255,255,255,.9)}
+.brand .tl{font-size:10.5px;color:rgba(255,255,255,.82);line-height:1.25}
+.topnav nav{display:flex;gap:34px;position:absolute;left:50%;transform:translateX(-50%)}
+.topnav nav a{color:#fff;text-decoration:none;font-size:14.5px;font-weight:800;letter-spacing:.02em;position:relative;padding-bottom:4px}
+.topnav nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:#fff;transform:scaleX(0);transform-origin:left;transition:transform .26s ease}
+.topnav nav a:hover::after{transform:scaleX(1)}
+.topnav .sp{margin-left:auto}
+.lang{color:rgba(255,255,255,.8);font-size:12px;font-weight:700;border:1px solid rgba(255,255,255,.4);border-radius:999px;padding:6px 13px}
+/* HERO full-bleed */
+.hero{position:relative;height:100vh;min-height:720px;overflow:hidden;background:#000}
+.hero video,.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero .grad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,18,14,.45),transparent 30%,transparent 55%,rgba(20,18,14,.72))}
+.heroframe{position:absolute;top:0;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:1240px;z-index:5;pointer-events:none}
+.heroframe>*{pointer-events:auto}
+.hero .logo-mini{position:absolute;left:48px;top:96px;z-index:5;color:#fff}
+.hero .logo-mini .m{font-family:'Jost',sans-serif;font-weight:700;font-size:30px;letter-spacing:.02em}
+.hero .logo-mini .s{font-size:12px;color:rgba(255,255,255,.85);margin-top:6px;letter-spacing:.02em}
+.hero .headline{position:absolute;left:48px;top:38%;z-index:5;color:#fff}
+.hero .headline h1{font-family:'Jost','Hiragino Kaku Gothic ProN',sans-serif;font-weight:600;font-size:54px;line-height:1.18;letter-spacing:-.01em}
+.hero .headline p{margin-top:14px;font-size:14px;color:rgba(255,255,255,.78);max-width:420px}
+/* floating card top-right */
+.floatcard{position:absolute;right:48px;bottom:200px;z-index:6;background:rgba(255,255,255,.14);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:12px;width:210px;display:flex;gap:11px;align-items:center;color:#fff}
+.floatcard img{width:54px;height:54px;border-radius:9px;object-fit:cover}
+.floatcard .t{font-size:11px;line-height:1.4}
+.floatcard .t b{display:block;font-size:12.5px;margin-bottom:2px}
+.scrollcue{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);z-index:5;color:rgba(255,255,255,.7);font-size:11px;letter-spacing:.18em;writing-mode:initial}
+/* STAT BAND (HTWO blue band → brand pastel) */
+.statband{background:linear-gradient(160deg,#e7e8e9 0%,#eef0f0 55%,#f7f8f8 100%);position:relative;overflow:hidden}
+.statband .in{position:relative;z-index:2;padding:84px 0}
+.bandtop{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.statband .lead{max-width:460px}
+.statband .lead p{font-size:14.5px;color:var(--ink2);line-height:1.9}
+.bandimg{overflow:hidden;aspect-ratio:16/10;background:#dcdddd}
+.bandimg img{width:100%;height:100%;object-fit:cover}
+.statcards{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px}
+.sc{background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.7);border-radius:18px;padding:26px 22px;min-height:170px;display:flex;flex-direction:column;justify-content:flex-end;backdrop-filter:blur(4px)}
+.sc .big{font-family:'Jost',sans-serif;font-weight:300;font-size:44px;color:var(--brown);line-height:1}
+.sc .big small{font-size:20px}
+.sc .lab{font-size:12.5px;color:var(--ink2);margin-top:8px;font-weight:600}
+.sc .sub{font-size:11px;color:var(--brown-soft);margin-top:2px}
+/* CENTER STATEMENT */
+.statement{text-align:center;padding:120px 0}
+.statement h2{font-family:'Jost','Hiragino Kaku Gothic ProN',sans-serif;font-weight:600;font-size:38px;line-height:1.45;color:var(--ink)}
+.statement .stmt-sub{margin:18px auto 0;font-size:16px;color:var(--ink2);max-width:680px;line-height:1.85}
+.why .head .whysub{margin-top:14px;font-size:15px;color:var(--ink2);max-width:560px;line-height:1.85}
+.iso .stage .stage-more{position:absolute;right:30px;bottom:26px;z-index:4;color:#fff;font-weight:700;font-size:14px;text-decoration:none;background:rgba(28,26,23,.55);padding:11px 20px;backdrop-filter:blur(4px)}
+.iso .stage .stage-more:hover{background:var(--brown)}
+.solutions{background:#fff}
+.soldual{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px}
+.solcard{border:1px solid var(--line);padding:36px 34px;background:var(--cream,#f0efe2)}
+.solcard .solk{color:var(--brown);font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.solcard h3{font-family:'Jost','Hiragino Kaku Gothic ProN',sans-serif;font-weight:600;font-size:24px;margin:10px 0 10px;color:var(--ink)}
+.solcard p{font-size:14.5px;color:var(--ink2)}
+.solcard ul{list-style:none;margin-top:18px;display:flex;flex-wrap:wrap;gap:9px}
+.solcard li{font-size:13px;font-weight:600;color:var(--ink);background:#fff;border:1px solid var(--line);padding:7px 13px}
+.statement h2 em{font-style:normal;color:var(--brown)}
+/* WHY 4 cards */
+.why{padding:40px 0 120px}
+.why .head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px;gap:20px;flex-wrap:wrap}
+.why .head .k{color:var(--brown);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+.why .head h2{font-family:'Jost','Hiragino Kaku Gothic ProN',sans-serif;font-weight:600;font-size:32px;color:var(--ink);margin-top:10px;line-height:1.3}
+.pillbtn{display:inline-flex;align-items:center;gap:9px;background:var(--ink);color:#fff;border-radius:999px;padding:13px 24px;font-size:13.5px;font-weight:600;text-decoration:none;white-space:nowrap}
+.pillbtn.light{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.why .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.wc{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:3/3.6;background:#000}
+.wc img,.wc video{width:100%;height:100%;object-fit:cover;filter:brightness(.82);transition:filter .6s ease}
+.wc{transition:transform .5s ease,box-shadow .5s ease}
+.wc.playing{transform:translateY(-6px);box-shadow:0 18px 36px rgba(28,26,23,.18)}
+.wc.playing video{filter:brightness(1.03)}
+.wc .seq{position:absolute;top:14px;left:14px;z-index:3;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-family:'Jost',sans-serif;font-size:12px;font-weight:600;color:#fff;background:rgba(28,26,23,.4)}
+.wc.playing .seq{background:var(--brown)}
+.wc .ov{position:absolute;inset:0;background:linear-gradient(0deg,rgba(28,26,23,.78),transparent 55%)}
+.wc .bd{position:absolute;left:0;right:0;bottom:0;padding:22px;color:#fff}
+.wc h3{font-size:18px;font-weight:700;line-height:1.35}
+.wc .arr{position:absolute;right:18px;bottom:18px;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.92);color:var(--ink);display:flex;align-items:center;justify-content:center;font-size:16px}
+/* ISO DIAGRAM */
+.iso{background:#fff;padding:110px 0}
+.iso .head{margin-bottom:30px}
+.iso .head .k{color:var(--brown-soft);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+.iso .head h2{font-family:'Jost','Hiragino Kaku Gothic ProN',sans-serif;font-weight:600;font-size:34px;color:var(--ink);margin-top:8px;line-height:1.25}
+.iso .head p{font-size:14px;color:var(--ink2);margin-top:12px;max-width:420px}
+.iso .stage{margin-top:0;border-radius:20px;overflow:hidden;background:linear-gradient(160deg,#faf9f3,#eceadd);border:1px solid var(--line);position:relative}
+.iso .stage .head{position:absolute;top:0;left:0;z-index:3;margin:0;padding:44px 52px;max-width:52%}
+.iso .stage::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(115deg,rgba(247,248,248,.85),rgba(247,248,248,.3) 38%,rgba(247,248,248,0) 62%)}
+.iso .stagevid{position:relative;z-index:0}
+.iso svg{display:block;width:100%;height:auto}
+.iso .stagevid{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+/* TWO PANEL */
+.two{display:grid;grid-template-columns:1fr 1.25fr;gap:24px;align-items:stretch}
+.two .left{background:#fff;border:1px solid var(--line);border-radius:20px;margin:0;padding:40px 46px;display:flex;flex-direction:column;justify-content:center}
+.two .left .k{color:var(--brown);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.two .left h3{font-family:'Jost','Hiragino Kaku Gothic ProN',sans-serif;font-weight:600;font-size:28px;margin:12px 0 12px;line-height:1.3}
+.two .left p{font-size:14.5px;color:var(--ink2);margin-bottom:24px}
+.two .right{position:relative;border-radius:20px;overflow:hidden;margin:0;min-height:330px;background:#000}
+.two .right img,.two .right video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.88}
+.two .right .ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,18,14,.55),rgba(20,18,14,.15))}
+.two .right .tx{position:absolute;left:40px;bottom:40px;right:40px;z-index:2;color:#fff}
+.two .right .tx h4{font-size:20px;font-weight:700;margin-bottom:8px}
+.two .right .tx p{font-size:13.5px;color:rgba(255,255,255,.82);max-width:440px}
+/* NEWS */
+.news{padding:110px 0}
+.news .top{text-align:center;max-width:640px;margin:0 auto 50px}
+.news .top .k{color:var(--brown);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+.news .top h2{font-family:'Jost','Hiragino Kaku Gothic ProN',sans-serif;font-weight:600;font-size:32px;color:var(--ink);margin:10px 0 22px;line-height:1.35}
+.news .body{display:grid;grid-template-columns:.8fr 1.2fr;gap:44px;align-items:center}
+.news .ph{border-radius:18px;overflow:hidden;aspect-ratio:4/3;background:#000}
+.news .ph img{width:100%;height:100%;object-fit:cover}
+.news ul{list-style:none}
+.news li{display:flex;align-items:center;gap:18px;padding:18px 4px;border-bottom:1px solid var(--line)}
+.news li:first-child{border-top:1px solid var(--line)}
+.news .cat{font-size:11px;font-weight:700;color:#fff;background:var(--brown);border-radius:6px;padding:3px 9px;white-space:nowrap}
+.news .cat.col{background:var(--brown-soft)}
+.news .txt{flex:1;font-size:14.5px;font-weight:600;color:var(--ink)}
+.news .dt{font-size:12px;color:var(--brown-soft);font-family:'Jost',sans-serif}
+.news .dot{width:9px;height:9px;border-radius:50%;background:var(--ink);flex:none}
+/* DARK CTA */
+.darkcta{position:relative;min-height:420px;display:flex;align-items:center;overflow:hidden;background:#1a1c16}
+.darkcta img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5}
+.darkcta .ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,24,16,.8),rgba(20,24,16,.3))}
+.darkcta .in{position:relative;z-index:2;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;color:#fff}
+.darkcta h2{font-family:'Jost','Hiragino Kaku Gothic ProN',sans-serif;font-weight:600;font-size:38px;line-height:1.3}
+.darkcta .links{display:flex;flex-direction:column;gap:14px}
+.darkcta .lk{display:flex;align-items:center;justify-content:space-between;gap:14px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:20px 24px;color:#fff;text-decoration:none}
+.darkcta .lk b{font-size:16px;font-weight:700}
+.darkcta .lk span{font-size:12px;color:rgba(255,255,255,.7);display:block;margin-top:3px}
+.darkcta .lk .a{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center}
+/* FOOTER dark */
+footer{background:#16140f;color:#b8b2a3;padding:56px 0 36px}
+.ft{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;padding-bottom:30px;border-bottom:1px solid rgba(255,255,255,.12)}
+.ft .b .mk{font-family:'Jost',sans-serif;font-weight:700;color:#fff;font-size:22px;letter-spacing:.04em}
+.ft .b .tl{font-size:11px;color:#8c8675;margin-top:6px;letter-spacing:.06em}
+.ft .cols{display:flex;gap:54px;flex-wrap:wrap}
+.ft h5{color:#fff;font-size:12.5px;font-weight:700;margin-bottom:12px}
+.ft ul{list-style:none;display:flex;flex-direction:column;gap:8px;font-size:13px}
+.ft a{color:#b8b2a3;text-decoration:none}.ft a:hover{color:#fff}
+.fbot{padding-top:22px;font-size:12px;color:#7d7869;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+/* squared layout — no rounding anywhere */
+*{border-radius:0 !important}
+@media(max-width:980px){.wrap{padding:0 24px}.hero .logo-mini,.hero .headline{left:24px}.hero .headline h1{font-size:34px}.iso .stage .head{max-width:74%;padding:24px}.iso .head h2{font-size:26px}.statcards,.why .grid{grid-template-columns:1fr 1fr}.two,.news .body,.darkcta .in{grid-template-columns:1fr}.two .right,.two .left{margin:0 0 18px 0}.topnav nav,.floatcard{display:none}.turbine{display:none}}
+</style>
+</head>
+<body>
+<!-- HERO -->
+<section class="hero">
+  <video autoplay muted loop playsinline poster="assets/img-hero.png">
+    <source src="assets/vid-hero.mp4" type="video/mp4">
+  </video>
+  <div class="grad"></div>
+  <div class="topnav"><div class="in">
+    <div class="brand"><img class="okilogo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAAAkCAYAAAD4guNSAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQ1IDc5LjE2MzQ5OSwgMjAxOC8wOC8xMy0xNjo0MDoyMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTkgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6Qjc5MzZFN0REQjk5MTFFOUIxMTlERjhFMjdCNEUyQzkiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6Qjc5MzZFN0VEQjk5MTFFOUIxMTlERjhFMjdCNEUyQzkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpBMzIxMzQxNkRCOTgxMUU5QjExOURGOEUyN0I0RTJDOSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpCNzkzNkU3Q0RCOTkxMUU5QjExOURGOEUyN0I0RTJDOSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PnfM1XgAAA/uSURBVHja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" alt="OKI Open up your dreams"><span class="bsub">CIRCUIT&nbsp;TECHNOLOGY</span></div>
+    <nav><a href="#why">技術</a><a href="#solution">ソリューション</a><a href="#detail">プロセス</a><a href="#news">ニュース</a><a href="#cta">お問い合わせ</a></nav>
+    <span class="sp"></span><span class="lang">JP / EN</span>
+  </div></div>
+  <div class="heroframe">
+    <div class="logo-mini"><div class="m disp">AI Server PCB</div><div class="s">Engineering the limit of computation.</div></div>
+    <div class="floatcard">
+      <img src="assets/img-floatcard.png" alt="">
+      <div class="t"><b>180層・15mm PCB</b>次世代AI半導体検査向け 技術確立</div>
+    </div>
+    <div class="headline">
+      <h1>先端機器の性能を、カスタム基板で支える。</h1>
+      <p>高速・高周波、高密度、放熱、半導体テストに対応するカスタムプリント配線板ソリューション。</p>
+    </div>
+  </div>
+  <div class="scrollcue">SCROLL</div>
+</section>
+
+<!-- STAT BAND -->
+<section class="statband"><div class="wrap in">
+  <div class="bandtop">
+    <div class="lead"><p>60余年にわたり磨き続けた接続技術。その安心と信頼が、次世代の産業を支えています。</p></div>
+    <div class="bandimg"><img src="assets/img-stat-board.png" alt="次世代AIサーバー向け高多層PCB"></div>
+  </div>
+  <div class="statcards">
+    <div class="sc"><div class="big disp">180<small>層</small></div><div class="lab">超高多層 PCB</div><div class="sub">板厚15mm・AI半導体検査向け</div></div>
+    <div class="sc"><div class="big disp">1.6<small>Tbps</small></div><div class="lab">クラス 高速伝送</div><div class="sub">次世代AIデータセンター対応</div></div>
+    <div class="sc"><div class="big disp">JAXA</div><div class="lab">宇宙品質の信頼性</div><div class="sub">高信頼設計をAI基板に</div></div>
+    <div class="sc"><div class="big disp">一貫</div><div class="lab">設計〜検査の自社体制</div><div class="sub">試作から量産まで</div></div>
+  </div>
+</div></section>
+
+<!-- CENTER STATEMENT -->
+<section class="statement"><div class="wrap">
+  <h2 class="disp">先端機器の性能を、<em>基板から支える</em></h2>
+  <p class="stmt-sub">OKIは、用途に応じたカスタムプリント配線板で、次世代エレクトロニクスの高度化に応えます。</p>
+</div></section>
+
+<!-- WHY 4 CARDS -->
+<section id="why" class="why"><div class="wrap">
+  <div class="head">
+    <div><div class="k">Why OKI</div><h2 class="disp">高機能基板に求められる、4つの技術要件</h2><p class="whysub">高速化・高密度化・高信頼性が求められる先端機器に対し、用途に応じた基板設計・製造技術で応えます。</p></div>
+    <a href="#detail" class="pillbtn">すべての技術を見る</a>
+  </div>
+  <div class="grid">
+    <div class="wc"><span class="seq">01</span><video muted playsinline preload="auto" poster="assets/img-card1.png"><source src="assets/vid-card1.mp4" type="video/mp4"></video><div class="ov"></div><div class="bd"><h3>高速大容量<br>伝送</h3></div><div class="arr">→</div></div>
+    <div class="wc"><span class="seq">02</span><video muted playsinline preload="auto" poster="assets/img-card2.png"><source src="assets/vid-card2.mp4" type="video/mp4"></video><div class="ov"></div><div class="bd"><h3>放熱・<br>サーマル設計</h3></div><div class="arr">→</div></div>
+    <div class="wc"><span class="seq">03</span><video muted playsinline preload="auto" poster="assets/img-card3.png"><source src="assets/vid-card3.mp4" type="video/mp4"></video><div class="ov"></div><div class="bd"><h3>微細・<br>高密度実装</h3></div><div class="arr">→</div></div>
+    <div class="wc"><span class="seq">04</span><video muted playsinline preload="auto" poster="assets/img-card4.png"><source src="assets/vid-card4.mp4" type="video/mp4"></video><div class="ov"></div><div class="bd"><h3>宇宙品質の<br>信頼性</h3></div><div class="arr">→</div></div>
+  </div>
+</div></section>
+
+<!-- ISO DIAGRAM -->
+<section id="detail" class="iso"><div class="wrap">
+  <div class="stage">
+    <div class="head">
+      <div class="k">One-Stop Process</div>
+      <h2 class="disp">もっと詳しく、<br>その一貫体制を。</h2>
+      <p>設計・解析からデータセンター実装まで。OKIは、AIサーバー基板の全工程を自社一貫でつなぎます。</p>
+    </div>
+    <a href="#solution" class="stage-more">詳しくはこちら →</a>
+    <video class="stagevid" autoplay muted loop playsinline poster="assets/img-onestop.png">
+      <source src="assets/vid-onestop.mp4" type="video/mp4">
+    </video>
+    <svg style="display:none" viewBox="0 0 1100 460" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="pcb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8a6a2e"/><stop offset="1" stop-color="#6e5524"/></linearGradient>
+        <linearGradient id="top" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c8a566"/><stop offset="1" stop-color="#a98f5f"/></linearGradient>
+      </defs>
+      <!-- ground grid (isometric) -->
+      <g stroke="#d9d0bb" stroke-width="1" opacity=".6">
+        <path d="M70 250 L560 30 L1040 250 L550 470 Z" fill="#f3efe2"/>
+        <path d="M180 200 L660 420" /><path d="M300 145 L780 365"/><path d="M430 90 L900 305"/>
+        <path d="M250 95 L760 330"/><path d="M400 60 L890 280"/>
+      </g>
+      <!-- isometric block helper shapes -->
+      <!-- 01 設計 -->
+      <g transform="translate(150,150)">
+        <path d="M0 40 L60 8 L120 40 L60 72 Z" fill="url(#top)"/>
+        <path d="M0 40 L0 92 L60 124 L60 72 Z" fill="#6e5524"/>
+        <path d="M120 40 L120 92 L60 124 L60 72 Z" fill="#8a6a2e"/>
+      </g>
+      <text x="190" y="300" font-family="Jost" font-size="17" fill="#1c1a17" text-anchor="middle" font-weight="600">01 設計・解析</text>
+      <!-- 02 シミュレーション -->
+      <g transform="translate(370,120)">
+        <path d="M0 40 L60 8 L120 40 L60 72 Z" fill="url(#top)"/>
+        <path d="M0 40 L0 92 L60 124 L60 72 Z" fill="#6e5524"/>
+        <path d="M120 40 L120 92 L60 124 L60 72 Z" fill="#8a6a2e"/>
+        <circle cx="60" cy="40" r="9" fill="#f0efe2"/>
+      </g>
+      <text x="410" y="272" font-family="Jost" font-size="17" fill="#1c1a17" text-anchor="middle" font-weight="600">02 シミュレーション</text>
+      <!-- 03 製造 -->
+      <g transform="translate(600,150)">
+        <path d="M0 40 L70 2 L160 48 L90 86 Z" fill="url(#top)"/>
+        <path d="M0 40 L0 100 L90 146 L90 86 Z" fill="#6e5524"/>
+        <path d="M160 48 L160 108 L90 146 L90 86 Z" fill="#8a6a2e"/>
+      </g>
+      <text x="660" y="320" font-family="Jost" font-size="17" fill="#1c1a17" text-anchor="middle" font-weight="600">03 製造</text>
+      <!-- 04 検査 -->
+      <g transform="translate(840,120)">
+        <path d="M0 40 L55 8 L110 40 L55 72 Z" fill="url(#top)"/>
+        <path d="M0 40 L0 88 L55 120 L55 72 Z" fill="#6e5524"/>
+        <path d="M110 40 L110 88 L55 120 L55 72 Z" fill="#8a6a2e"/>
+        <rect x="44" y="-26" width="22" height="34" rx="3" fill="#a98f5f"/>
+      </g>
+      <text x="895" y="270" font-family="Jost" font-size="17" fill="#1c1a17" text-anchor="middle" font-weight="600">04 検査</text>
+      <!-- data center node -->
+      <g transform="translate(470,300)">
+        <path d="M0 30 L90 -16 L210 42 L120 88 Z" fill="#e7f4d2"/>
+        <path d="M0 30 L0 70 L120 128 L120 88 Z" fill="#cfe0ab"/>
+        <path d="M210 42 L210 82 L120 128 L120 88 Z" fill="#bcd092"/>
+        <text x="105" y="118" font-family="Jost" font-size="15" fill="#3a5212" text-anchor="middle" font-weight="600">AI Data Center</text>
+      </g>
+      <!-- connecting arrows -->
+      <g stroke="#a98f5f" stroke-width="2.4" fill="none" stroke-dasharray="3 6" opacity=".9">
+        <path d="M270 215 L380 188"/><path d="M490 185 L610 200"/><path d="M730 218 L850 188"/>
+      </g>
+    </svg>
+  </div>
+</div></section>
+
+<!-- SOLUTIONS (slide7) -->
+<section id="solution" class="solutions" style="padding:104px 0"><div class="wrap">
+  <div class="shead" style="max-width:760px"><div class="k">Solutions</div>
+    <h2 class="disp">課題を、基板技術で解く。</h2>
+    <p>高速・高周波化、小型・薄型・軽量化、耐発熱、耐EMC、耐環境性。情報通信機器向けプリント配線板で培った技術と経験を活かし、産業用基板の分野でお客様のご要望にお応えします。</p></div>
+  <div class="soldual">
+    <div class="solcard">
+      <div class="solk">01 ／ Board Solution</div>
+      <h3>ボードソリューション</h3>
+      <p>超高速回路・高周波基板、小型・高密度化に関する課題を解決します。</p>
+      <ul><li>超高速回路・高周波基板</li><li>小型・高密度化</li><li>信頼性評価・解析</li></ul>
+    </div>
+    <div class="solcard">
+      <div class="solk">02 ／ Simulation-based Design</div>
+      <h3>シミュレーションベース基板設計</h3>
+      <p>基板設計・解析〜製造〜特性評価まで、一貫したソリューションを提供。各種シミュレーションと豊富な設計ノウハウで高品質なサービスを実現します。</p>
+      <ul><li>シグナルインテグリティー(SI)</li><li>パワーインテグリティー(PI)</li><li>高速伝送</li><li>EMI／EMC</li><li>熱ソリューション</li><li>自社開発ツール</li></ul>
+    </div>
+  </div>
+</div></section>
+
+<!-- TWO PANEL -->
+<section><div class="wrap"><div class="two">
+  <div class="left">
+    <div class="k">Express Service</div>
+    <h3 class="disp">高多層基板を、<br>短納期で。</h3>
+    <p>試作から量産まで、長年培ったコア技術で高精細・高精度多層基板の開発に対応。難しい一枚ほど、私たちにお任せください。</p>
+    <div><a href="#cta" class="pillbtn">サービスを見る</a></div>
+  </div>
+  <div class="right">
+    <video autoplay muted loop playsinline poster="assets/img-factory.png">
+      <source src="assets/vid-factory.mp4" type="video/mp4">
+    </video>
+    <div class="ov"></div>
+    <div class="tx"><h4>設計から製造まで、一貫体制</h4><p>パターン設計・高周波シミュレーションから製造・全数検査まで、自社で統合。品質とスピードを両立し、AIインフラの厳しい要求に応えます。</p></div>
+  </div>
+</div></div></section>
+
+<!-- NEWS -->
+<section id="news" class="news"><div class="wrap">
+  <div class="top">
+    <div class="k">News &amp; Insight</div>
+    <h2 class="disp">OKIのAIサーバー技術に関する<br>最新情報をお届けします。</h2>
+    <a href="#" class="pillbtn">お知らせ一覧へ</a>
+  </div>
+  <div class="body">
+    <div class="ph"><img src="assets/img-card1.png" alt=""></div>
+    <ul>
+      <li><span class="cat">News</span><span class="txt">次世代AI半導体の検査装置向け180層・板厚15mmのPCB技術を確立</span><span class="dt">2026.05.11</span><span class="dot"></span></li>
+      <li><span class="cat col">Column</span><span class="txt">放熱ソリューションとは？OKIの放熱技術をご紹介</span><span class="dt">2025.12.03</span><span class="dot"></span></li>
+      <li><span class="cat">News</span><span class="txt">1.6Tbpsクラス高速伝送PCBの「高周波ビア高精度シミュレーション技術」を開発</span><span class="dt">2025.11.28</span><span class="dot"></span></li>
+      <li><span class="cat col">Column</span><span class="txt">PCI Expressとは？基板設計の際に注意すべきポイントを解説</span><span class="dt">2025.07.01</span><span class="dot"></span></li>
+      <li><span class="cat col">Column</span><span class="txt">JAXAの役割とは？宇宙開発を支えるPCB技術を紹介</span><span class="dt">2024.12.21</span><span class="dot"></span></li>
+    </ul>
+  </div>
+</div></section>
+
+<!-- DARK CTA -->
+<section class="darkcta">
+  <img src="assets/img-cta.png" alt="">
+  <div class="ov"></div>
+  <div class="wrap in">
+    <h2 class="disp">すべての計算の限界を、<br>OKIと共に超える。</h2>
+    <div class="links">
+      <a href="#" class="lk"><span><b>技術相談をする</b><span>AIサーバー基板のご相談</span></span><span class="a">→</span></a>
+      <a href="#" class="lk"><span><b>見積を依頼 (RFQ)</b><span>層数・用途から構造化フォームで</span></span><span class="a">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer><div class="wrap">
+  <div class="ft">
+    <div class="b"><img class="okilogo" style="height:30px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAAAkCAYAAAD4guNSAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQ1IDc5LjE2MzQ5OSwgMjAxOC8wOC8xMy0xNjo0MDoyMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTkgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6Qjc5MzZFN0REQjk5MTFFOUIxMTlERjhFMjdCNEUyQzkiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6Qjc5MzZFN0VEQjk5MTFFOUIxMTlERjhFMjdCNEUyQzkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpBMzIxMzQxNkRCOTgxMUU5QjExOURGOEUyN0I0RTJDOSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpCNzkzNkU3Q0RCOTkxMUU5QjExOURGOEUyN0I0RTJDOSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PnfM1XgAAA/uSURBVHja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" alt="OKI Open up your dreams"><div class="tl" style="margin-top:8px">OKI CIRCUIT TECHNOLOGY</div></div>
+    <div class="cols">
+      <div><h5>Products</h5><ul><li><a href="#">高速・高周波</a></li><li><a href="#">高密度</a></li><li><a href="#">大電流・放熱</a></li><li><a href="#">半導体テスト(ATE)</a></li></ul></div>
+      <div><h5>Industries</h5><ul><li><a href="#">AIサーバー</a></li><li><a href="#">航空宇宙・防衛</a></li><li><a href="#">情報通信</a></li><li><a href="#">社会インフラ</a></li></ul></div>
+      <div><h5>Company</h5><ul><li><a href="#">会社概要</a></li><li><a href="#">研究開発</a></li><li><a href="#">Contact / RFQ</a></li><li><a href="#">English</a></li></ul></div>
+    </div>
+  </div>
+  <div class="fbot"><span>© 2012-2026 OKI Circuit Technology Co., Ltd.</span><span>山形県鶴岡市宝田1丁目15番68号</span></div>
+</div></footer>
+<script>
+(function(){
+  const cards=[].slice.call(document.querySelectorAll('#why .wc'));
+  if(!cards.length)return;
+  const vids=cards.map(c=>c.querySelector('video'));
+  let i=0,started=false;
+  function play(idx){
+    cards.forEach((c,n)=>{ const v=vids[n];
+      if(n===idx){ c.classList.add('playing'); try{v.currentTime=0;}catch(e){} v.play().catch(()=>{}); }
+      else{ c.classList.remove('playing'); v.pause(); try{v.currentTime=0;}catch(e){} }
+    });
+  }
+  vids.forEach((v,n)=>{ v.addEventListener('ended',()=>{ i=(n+1)%vids.length; play(i); }); });
+  function start(){ if(started)return; started=true; play(0); }
+  // begin when the section scrolls into view (and immediately if already visible)
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver((es)=>{es.forEach(e=>{ if(e.isIntersecting){ start(); io.disconnect(); }});},{threshold:.25});
+    io.observe(document.getElementById('why'));
+  } else { start(); }
+  window.addEventListener('load',start);
+  document.addEventListener('click',()=>{ if(started && vids[i].paused) vids[i].play().catch(()=>{}); },{once:true});
+})();
+</script>
+</body>
+</html>
